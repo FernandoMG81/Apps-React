@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "eslint-auto-fix": "^1.0.4",
     "standard": "^17.0.0"
   },
   "eslintConfig": {
