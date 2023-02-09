@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
 const logger = require('./loggerMiddleware')
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json())
 
 console.log(logger)
@@ -17,7 +19,7 @@ let notes = [
     id: 2,
     content: 'Tengo que repasar las notas de JS',
     date: '2023-02-01T18:00:00.0987',
-    important: true
+    important: false
   },
   {
     id: 3,
@@ -78,13 +80,23 @@ app.post('/api/notes', (request, response) => {
   response.status(201).json(newNote)
 })
 
+app.put('/api/notes/:id', (request, response) => {
+  const id = Number(request.params.id)
+
+  notes.forEach(note => {
+    if (note.id === id) {
+      note.important = !note.important
+    }
+  })
+})
+
 app.use((request, response) => {
   response.status(404).json({
     error: 'Not Found'
   })
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
