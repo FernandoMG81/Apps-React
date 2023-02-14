@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Note from './components/Note'
 import Notification from './components/Notification'
 import noteService from './services/notes'
-import index from './index.css'
+import './index.css'
 
 const App = () => {
   const [notes, setNotes] = useState([]) 
