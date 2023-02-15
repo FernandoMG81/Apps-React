@@ -4,7 +4,10 @@
     "standard": "17.0.0"
   },
   "eslintConfig": {
-    "extends": "./node_modules/standard/eslintrc.json"
+    "extends": "./node_modules/standard/eslintrc.json",
+    "env": {
+      "jest": true
+    }
   },
   "dependencies": {
     "vite": "4.0.4"
