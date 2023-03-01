@@ -3,9 +3,8 @@
 
 ✅ Muestra una lista de productos que vienen de un JSON
 ✅ Añade un filtro por categoria
-- Añade un filto por precio
-
-Haz uso de useContext para evitrar pasar props innecesarias
+✅ Añade un filto por precio
+✅ Haz uso de useContext para evitrar pasar props innecesarias
 
 2. Shopping cart
 
