@@ -1,36 +1,24 @@
-import { useState } from 'react'
 import './App.css'
+import HomePage from './pages/Home'
+import AboutPage from './pages/About'
+import { Router } from './Router'
+import Page404 from './404'
 
-function HomePage () {
-  return (
-    <>
-      <h1>Home</h1>
-      <p>Esta es una pagina de ejemplo</p>
-      <a href='/about'>Ir a sobre nosotros</a>
-    </>
-  )
-}
-
-function AboutPage () {
-  return (
-    <>
-      <h1>About</h1>
-      <p>Hola! Me llamo Fernando y estoy creando un clon de React Router</p>
-      <div>
-        <img src='https://pbs.twimg.com/profile_images/1629135732487991304/dZrU01Jx_400x400.jpg' alt='Foto de Fernando' />
-      </div>
-      <a href='/'>Ir a la home</a>
-    </>
-  )
-}
+const routes = [
+  {
+    path: '/',
+    Component: HomePage
+  },
+  {
+    path: '/about',
+    Component: AboutPage
+  }
+]
 
 function App () {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname)
-
   return (
     <main>
-      {currentPath === '/' && <HomePage />}
-      {currentPath === '/about' && <AboutPage />}
+      <Router routes={routes} defaultComponent={Page404} />
     </main>
   )
 }
