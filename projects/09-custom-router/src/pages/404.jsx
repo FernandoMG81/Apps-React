@@ -1,5 +1,5 @@
-import image404 from './images/this-is-fine-404.gif'
-import { Link } from './Link'
+import image404 from '../images/this-is-fine-404.gif'
+import { Link } from '../Link'
 
 export default function Page404 () {
   return (
