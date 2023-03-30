@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import confetti from 'canvas-confetti'
 import { Square } from './components/Square.jsx'
 import { TURNS } from './constants.js'
 import { checkWinnerFrom, checkEndGame } from './logic/board.js'
 import { WinnerModal } from './components/WinnerModal.jsx'
 import { resetGameStorage, saveGameToStorage } from './logic/storage/index.js'
+import { Comment } from 'react-loader-spinner'
+import { ThingkingModal } from './components/ThinkingModal.jsx'
 
 function App () {
   const [board, setBoard] = useState(() => {
@@ -18,7 +20,7 @@ function App () {
     const turnFromLocalStorage = window.localStorage.getItem('turn')
     return turnFromLocalStorage ?? TURNS.X
   })
-
+  const [loading, setLoading] = useState(false)
   const [winner, setWinner] = useState(null)
 
   const resetGame = () => {
@@ -56,6 +58,54 @@ function App () {
     }
   }
 
+  const cpuMove = () => {
+    if (turn === TURNS.O) {
+      const emptyPositions = board
+        .map((value, index) => value === null ? index : null)
+        .filter((value) => value !== null)
+  
+      // Revisar si la CPU puede ganar en la siguiente jugada
+      const cpuWinningMove = findWinningMove(emptyPositions, TURNS.O)
+      if (cpuWinningMove !== null) {
+        updateBoard(cpuWinningMove)
+        return
+      }
+  
+      // Revisar si el jugador humano puede ganar en la siguiente jugada
+      const playerWinningMove = findWinningMove(emptyPositions, TURNS.X)
+      if (playerWinningMove !== null) {
+        updateBoard(playerWinningMove)
+        return
+      }
+  
+      // Si no hay posibilidad de ganar, seleccionar una posición aleatoria
+      const randomIndex = Math.floor(Math.random() * emptyPositions.length)
+      const position = emptyPositions[randomIndex]
+      updateBoard(position)
+    }
+  }
+  
+  const findWinningMove = (emptyPositions, turn) => {
+    // Revisar si hay una posición donde la CPU o el jugador humano puedan ganar en la siguiente jugada
+    for (let i = 0; i < emptyPositions.length; i++) {
+      const boardCopy = [...board]
+      boardCopy[emptyPositions[i]] = turn
+      const winner = checkWinnerFrom(boardCopy)
+      if (winner === turn) {
+        return emptyPositions[i]
+      }
+    }
+    return null
+  }
+  
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      cpuMove()
+      setLoading(false)
+    },1000)
+  }, [turn])
+
   return (
     <main className='board'>
       <h1>Tic Tac Toe</h1>
@@ -84,12 +134,25 @@ function App () {
           {TURNS.O}
         </Square>
       </section>
+      <section className={loading ? 'winner' : ''}>
+        {loading ? (
+          <Comment
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="comment-loading"
+            wrapperStyle={{}}
+            wrapperClass="comment-wrapper"
+            color="#fff"
+            backgroundColor="#F4442E"
+          />
+          ) : null}
 
+      </section>
       <WinnerModal
         winner={winner}
         resetGame={resetGame}
       />
-
     </main>
   )
 }
