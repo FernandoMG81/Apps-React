@@ -6,7 +6,6 @@ import { checkWinnerFrom, checkEndGame } from './logic/board.js'
 import { WinnerModal } from './components/WinnerModal.jsx'
 import { resetGameStorage, saveGameToStorage } from './logic/storage/index.js'
 import { Comment } from 'react-loader-spinner'
-import { ThingkingModal } from './components/ThinkingModal.jsx'
 
 function App () {
   const [board, setBoard] = useState(() => {
