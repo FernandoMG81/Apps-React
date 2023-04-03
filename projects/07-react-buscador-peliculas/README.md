@@ -11,7 +11,8 @@ Requerimientos:
 
 ✅- Necesita mostrar un input para buscar la pelicula y un boton para buscar.
 ✅ Lista las peliculas encontradas y muestra el titulo, año y poster.
-- Haz que las peliculas se muestren en un grid responsive.
+✅ Haz que las peliculas se muestren en un grid responsive.
+- Fetch de datos
 
 Primera iteracion:
 

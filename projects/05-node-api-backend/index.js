@@ -120,6 +120,7 @@ const PORT = process.env.PORT
 connectDB().then(() => {
   const server = app.listen(PORT, () => {
     console.log('listening for requests')
+    console.log(server)
   })
 })
 
