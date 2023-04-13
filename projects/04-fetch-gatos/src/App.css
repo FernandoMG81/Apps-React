@@ -3,12 +3,42 @@ main {
     display: flex;
     flex-direction: column;
     place-items: center;
-    max-width: 800px;
+    max-width: 100%;
     margin: 0 auto;
     font-family: system-ui;
+    background-color: blanchedalmond;
 }
 img{
     max-width: 400px;
+}
+
+h3{
+    color: darkblue;
+    font-size: 30px;
+}
+
+section{
+    background-color: aquamarine;
+    border-radius: 8px;
+    padding: 10px;
+    border: 2px solid #020649;
+}
+
+
+button{
+    border: 2px solid blue;
+    border-radius: 8px;
+    color: white;
+    background-color: blue;
+    width: 180px;
+    height: 60px;
+    font-size: 16px;
+    font-weight: bold;
+
+}
+button:hover{
+    background-color: #020649;
+    cursor: pointer;
 }
 @media (min-width: 800px) {
     
@@ -17,6 +47,7 @@ img{
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+        margin: 20px;
     }
     
     section img{

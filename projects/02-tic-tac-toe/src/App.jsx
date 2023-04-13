@@ -152,6 +152,7 @@ function App () {
         winner={winner}
         resetGame={resetGame}
       />
+      <footer>Game by Fernando Gordillo</footer>
     </main>
   )
 }

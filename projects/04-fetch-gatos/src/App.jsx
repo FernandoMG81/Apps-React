@@ -15,7 +15,7 @@ export function App () {
 
   return (
     <main>
-      <h3>App de gatitos</h3>
+      <h3>Facts de gatitos</h3>
       <button onClick={handleClick}>Next Random Fact</button>
       <section>
         {fact && <p>{fact}</p>}
