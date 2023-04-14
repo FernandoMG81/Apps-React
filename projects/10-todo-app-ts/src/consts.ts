@@ -4,17 +4,7 @@ export const TODO_FILTERS = {
   COMPLETED: 'completed'
 } as const
 
-export const FILTERS_BUTTONS = {
-  [TODO_FILTERS.ALL]: {
-    literal: 'Todos',
-    href: `/?filter=${TODO_FILTERS.ALL}`
-  },
-  [TODO_FILTERS.ACTIVE]: {
-    literal: 'Activos',
-    href: `/?filter=${TODO_FILTERS.ACTIVE}`
-  },
-  [TODO_FILTERS.COMPLETED]: {
-    literal: 'Completados',
-    href: `/?filter=${TODO_FILTERS.COMPLETED}`
-  }
+export const KEY_CODES = {
+  ENTER: 13,
+  ESCAPE: 27
 } as const
