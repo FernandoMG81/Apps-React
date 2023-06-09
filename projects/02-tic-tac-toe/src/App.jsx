@@ -99,16 +99,24 @@ function App () {
   
   useEffect(() => {
     setLoading(true)
-    setTimeout(() => {
-      cpuMove()
-      setLoading(false)
-    },1000)
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const executeMove = async () => {
+      await delay(1000);
+      setLoading(false);
+      cpuMove();
+    };
+  
+    executeMove();
   }, [turn])
 
   return (
+    <>
+    <button className='button' onClick={resetGame}>
+        <h1>Reset</h1>
+      </button>
     <main className='board'>
-      <h1>Tic Tac Toe</h1>
-      <button onClick={resetGame}>Reset del juego</button>
+      {/* <h1>Tic Tac Toe</h1> */}
+      
       <section className='game'>
         {
           board.map((square, index) => {
@@ -146,14 +154,14 @@ function App () {
             backgroundColor="#F4442E"
           />
           ) : null}
-
       </section>
       <WinnerModal
         winner={winner}
         resetGame={resetGame}
       />
-      <footer>Game by Fernando Gordillo</footer>
     </main>
+      <footer>Game by Fernando Gordillo</footer>
+    </>
   )
 }
 

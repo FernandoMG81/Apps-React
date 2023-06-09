@@ -8,7 +8,6 @@ export function WinnerModal ({ winner, resetGame }) {
     <section className='winner'>
       <div className='text'>
         <h2>{winnerText}</h2>
-
         <header className='win'>
           {
            winner &&
